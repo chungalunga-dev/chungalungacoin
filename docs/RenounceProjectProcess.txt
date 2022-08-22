@@ -1,0 +1,11 @@
+RENOUNCE PROJECT:
+
+1. disable TCS
+2. disable APS
+3. disable SWAP
+4. enable account sharing
+5. set MAX TX to total supply
+6. remove liquidity share? (can be done last)
+7. remove CTRL role members
+8. renounce ADMIN privileged
+9. renounce ownership

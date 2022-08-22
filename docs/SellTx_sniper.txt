@@ -1,0 +1,70 @@
+Sell (sniper) TX:
+
+seller: 0x662bf721405cee210e4638e8b94f49040bb6d9b9
+contract: 0x2359d22b323fcd23856fd91ddf77447403a665fc
+LP Pair:0x9b3e9c97312167b63212b045e81e7f40ff0c5417
+router: 0x7a250d5630b4cf539739df2c5dacb4c659f2488d
+sniper Router: 0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45
+WETH: 0xc778417e063141139fce010982780140aa0cd5ab
+
+https://ropsten.etherscan.io/tx/0x86ad17cab554d9c764409a93cb76cd60c189738a4e339dc33a3a0f9602a58553
+
+
+From:
+0x662bf721405cee210e4638e8b94f49040bb6d9b9
+Interacted With (To):
+Contract 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45
+
+     TRANSFER  0.‍000009433760010142 Ether From 0xc778417e063141139fce010982780140aa0cd5ab To 0x7a250d5630b4cf539739df2c5dacb4c659f2488d
+     TRANSFER  0.‍000009433760010142 Ether From 0x7a250d5630b4cf539739df2c5dacb4c659f2488d To 0x2359d22b323fcd23856fd91ddf77447403a665fc
+     TRANSFER  0.‍000003773504004057 Ether From 0x2359d22b323fcd23856fd91ddf77447403a665fc To 0x7a250d5630b4cf539739df2c5dacb4c659f2488d
+     TRANSFER  0.‍000002365424829577 Ether From 0x7a250d5630b4cf539739df2c5dacb4c659f2488d To 0xc778417e063141139fce010982780140aa0cd5ab
+     TRANSFER  0.‍00000140807917448 Ether From 0x7a250d5630b4cf539739df2c5dacb4c659f2488d To 0x2359d22b323fcd23856fd91ddf77447403a665fc
+     TRANSFER  0.‍000005660256006085 Ether From 0x2359d22b323fcd23856fd91ddf77447403a665fc To 0xc4c7a570d75fbe103aaf8d207b7086a52d9ceb9a
+     TRANSFER  0.‍000208629061054379 Ether From 0xc778417e063141139fce010982780140aa0cd5ab To 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45
+     TRANSFER  0.‍000208629061054379 Ether From 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 To 0x662bf721405cee210e4638e8b94f490
+	 
+	 
+	From 0x2359d22b323fcd23856fd91ddf77447403a665fcTo 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 472,012.000000004661303911 A536872754D_... (A541)
+    From 0x9b3e9c97312167b63212b045e81e7f40ff0c5417To 0x7a250d5630b4cf539739df2c5dacb4c659f2488d For 0.000009433760010142 Wrapped Ethe... (WETH)
+    From 0x2359d22b323fcd23856fd91ddf77447403a665fcTo 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 118,003.000000001165325977 A536872754D_... (A541)
+    From 0x7a250d5630b4cf539739df2c5dacb4c659f2488dTo 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 0.000002365424829577 Wrapped Ethe... (WETH)
+    From 0x0000000000000000000000000000000000000000To 0x000000000000000000000000000000000000dead For 0.528323949381019278 Uniswap V2 (UNI-V2)
+    From 0x662bf721405cee210e4638e8b94f49040bb6d9b9To 0x2359d22b323fcd23856fd91ddf77447403a665fc For 550,000 A536872754D_... (A541)
+    From 0x662bf721405cee210e4638e8b94f49040bb6d9b9To 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 10,450,000 A536872754D_... (A541)
+    From 0x9b3e9c97312167b63212b045e81e7f40ff0c5417To 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 For 0.000208629061054379 Wrapped Ethe... (WETH) 
+	
+	
+Contract TX:
+1. from contract to LP Pair -> tokens (internal swap)
+2. from LP Pair to Router -> ETH (internal swap)
+3. from contract to LP Pair -> tokens (for LP provision)
+4. from Router to LP Pair -> ETH (for LP provision)
+5. from dead to dead addr -> UNI-V2 share tokens (share is burnt durin LP provision)
+6. from seller to contract ->  tokens (fees)
+7. from seller to LP pair -> tokens sold
+8. from LP pair to Swap Router -> WETH
+
+Transfers:
+1. WETH to router -> internal swap ETH
+2. router to contract -> internal swap ETH
+3. contract to router -> internal LP provision ETH plus gas fees
+4. router to WETH -> internal LP provision ETH minus fees
+5. router to contract -> internal LP provison ETH gas fees not spent (router returns unspent fees to contract)
+6. contract to marketing wallet -> marketing fee
+7. WETH to swap router -> sell ETH amount
+8. Swap router to seller ->sell ETH amount
+
+
+Internally:
+
+...
+
+LP pair transfer (internal LP provision)
+LP pair sync (internal LP provision)
+LP pair mint (internal LP provision)
+
+...
+
+LP pair sync (sell)
+LP pair swap (sell)

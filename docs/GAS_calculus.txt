@@ -1,0 +1,32 @@
+GAS Calculus
+
+deploy:
+	- create operation: 32000 gas
+	- base cost: 21000 gas
+	
+	TOTAL = 53000 
+	
+storage (about 10kB):
+	- 20000 per 256 bits(32bytes)
+	- 15000/32 = 10 000 000 gas
+	
+	TOTAL: 10 000 000
+	
+initialization(constructor):
+	- 200 gwei per byte
+	- 10kB = 10000*200
+	
+	TOTAL: 2 000 000 gwei
+	
+	
+TOTAL: 53000 + 10 000 000 = 10 053 000 gas + 2 000 000 gwei
+
+
+COST (1gwei) = 0,00000185 $
+
+COST@6gwei: 10M * 6 + 2M = 62M gwei = 115$
+
+COST@13gwie: 10M * 13 + 2M = 132M gwei = 245$
+
+COST@21gwei: 10M * 21 + 2M = 212M gwei = 400$
+

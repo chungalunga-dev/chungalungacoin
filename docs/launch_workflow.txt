@@ -1,0 +1,236 @@
+0. include header
+
+/**
+*
+* https://www.chungalungacoin.com/
+* https://t.me/chungalunga
+* https://twitter.com/chungalungacoin
+*
+*/
+
+- set marketing wallet: 0x69cEC9B2FFDfE02481fBDC372Cd885FE83F3f694
+- set name: Chungalunga
+- set ticker: CL
+
+
+************************
+* 	SHORT LIST
+************************
+10-13h: 
+	- deploy contract
+	- whitelist 
+	- private sale
+	- add ETH to contract
+	- check TCS, APS, max TX limit etc
+	
+18-19h
+	- create LP
+	- addAMMPair
+	
+19-20h
+	- start whitelist process
+	- set max tx to 20M after 15 mins of open trade
+	- verify contract
+	- lock liquidity
+	
+************************
+* 	DETAILED LIST
+************************
+
+1. deploy contract
+	- marketing wallet
+	
+	* creates contract
+	* setups basic exclusions
+	* creator is owner of contract and all tokens
+	* APS and TCS are disabled
+	
+TX:
+	1. deploy
+	2. contract
+	
+ESTIMATE: 5 mins
+
+---------
+2. whitelist people
+	
+	- bulkWhitelist x 50
+	
+
+	
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	1. N x whitelist(bulk)
+	
+ESTIMATE: 5min
+
+-----------
+
+3. private sale tokens
+	
+	- exclude from fee all addresses OR setPresale(true)
+	- airdropTransfer
+	- include in fee OR setPresale(false)
+
+	* MUST be done by the owner of contract (he is currently owner of all tokens)
+	
+TX:
+	1. setPresale
+	2. privateAirdrop 
+	3. setPresale
+	
+ESTIMATE: 5min
+
+------------
+
+4. OPTIONAL(check it) : setTxLimit to 0
+
+	- setTxAmount(0)
+	
+TX:
+	1. setTxAmount
+	
+ESTIMATE: 15 sec
+
+
+----- 
+5. add ETH to contract
+	- send ETH to contract (100$)
+	
+TX:
+	
+ESTIMATE: 5 mins
+
+--------
+
+6. check TCS
+	- getTCS
+
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees	
+	
+TX:
+	1.getTCS
+	
+ESTIMATE: 5 mins
+
+-------------
+7. check APS
+	- getAPS(true)
+	- OPTIONAL: setAPSThresh
+	- OPTIONAL: setAPSInterval
+	
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	1. getAPS
+	2. OPTIONAL: setAPSThresh
+	3. OPTIONAL: setAPSInterval
+	
+ESTIMATE: 5 mins
+
+-------------
+8. Create LP
+
+	- uniswap V2 pool create
+
+	* entire USDT balance MUST be swapped to ETH before.
+	* MUST be done by owner of contract (he is owner of tokens - minus the ones sent to private sale owners)
+	
+TX: 
+	1. addliquidityETH
+	2. LPv2 Pair
+	
+ESTIMATE: 10 mins
+
+------------
+9. set LP Pair address
+	- seLPP
+	
+	* MUST be done by member of control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	1. setLPP
+	
+ESTIMATE: 5 min
+
+------------
+10. define liquidity added (OPTIONAL ->defined by setLPP))
+	- defineLiquidityAdded
+	
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	1. defineLiquidityAdded
+	
+ESTIMATE: 1 min
+
+------------
+
+
+11. lock liquidity
+	- team.finance
+	
+	* MUST be done by owner of contract and LP pair tokens
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	1. approval
+	2. transfer of LP pair tokens
+	
+ESTIMATE: 30 mins
+---------
+
+12. start whitelist process
+	- startWhitelist(5)
+
+	
+	* trade MUST be closed!
+	* will start whitelist process immediately!
+	* will expire whitelist process AFTER 15mins
+	* will set max TX limit to 10M tokens upon whitelist expiration
+	* will open trade automatically upon whitelist expiration
+	* upon expiration whitelisted accounts have no privileges
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+
+TX:
+	startWhitelist
+	setMaxTxLimit(10M)
+	openTrade
+	
+ESTIMATE: 1 mins
+		
+----------
+
+
+13. increase TX limit after 60mins of open trade (15mins + whitelist process duration)
+
+	- setMaxTxLimit(20M)
+	
+	* should be manually executed 60 mins after trade is opened (which is opened once whitelist process ends)
+	* MUST be done by member of SHT control group. 
+	* msg.sender MUST have enough ETH to pay for fees
+	
+TX:
+	setMaxTxLimit
+	
+ESTIMATE: 1 min
+
+---------
+
+14. verify contract
+
+	- upload code
+	- verify you are owner
+	- upload logo
+	
+ESTIMATE: unknown
+
+-----------

@@ -1,0 +1,50 @@
+ADD Liquidity process
+
+https://ropsten.etherscan.io/tx/0x83e24b4c0244ba1143b6d8bd33b5c979a152e2f7c74456774e1a3aaf15cbad6b
+
+LP Pair: 0x9B3e9c97312167B63212b045E81e7f40fF0C5417
+Router: 0x7a250d5630b4cf539739df2c5dacb4c659f2488d
+contract: 0x2359d22B323Fcd23856FD91DdF77447403A665Fc
+owner: 0x9bef032c0e5e8d773c2113421e3e411ec5c33c0d
+
+From:
+0x9bef032c0e5e8d773c2113421e3e411ec5c33c0d
+To:
+Contract 0x7a250d5630b4cf539739df2c5dacb4c659f2488d
+
+     TRANSFER  0.‍2 Ether From 0x7a250d5630b4cf539739df2c5dacb4c659f2488d To 0xc778417e063141139fce010982780140
+	 
+	 
+	From 0x9bef032c0e5e8d773c2113421e3e411ec5c33c0dTo 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 10,000,000,000 A536872754D_... (A541)
+	From 0x7a250d5630b4cf539739df2c5dacb4c659f2488dTo 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 0.2 Wrapped Ethe... (WETH)
+	From 0x0000000000000000000000000000000000000000To 0x0000000000000000000000000000000000000000 For 0.000000000000001 Uniswap V2 (UNI-V2)
+	From 0x0000000000000000000000000000000000000000To 0x9bef032c0e5e8d773c2113421e3e411ec5c33c0d For 44,721.359549995793927183 Uniswap V2 (UNI-V2) 
+	
+
+Contract tx:
+1. from owner to LP Pair: tokens
+
+Additional TX:
+1. from router to LP Pair: ETH
+2. dead address to owner: UNI-V2 share -> mints share tokens
+
+1x transfer:
+1. from router to WETH: ETH
+
+
+Internally:
+1. Uniswap sends tokens from owner to LP pair
+2. WETH approves ETH send by router
+3. WETH triggers send of ETH from router to LP Pair ->now LP pair has both ETH and tokens)
+4. LP Pair sync reserves -> adjusts ratio between reserve0 and reseve1 (token and ETH) 
+5. LP Pair mints tokens and ETH (both amounts in pair, just an event) -> router initiates this
+
+
+STEPS:
+
+1. set max TX to 0
+2. disable APS and TCS
+3. create LP
+
+
+

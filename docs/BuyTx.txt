@@ -1,0 +1,42 @@
+Buy TX(sniper)
+
+https://ropsten.etherscan.io/tx/0x1b806574b41d3b37bade147a389dbe8732b7b4c56c5f29afa933cfcf1f69c79e
+
+buyer: 0x662bf721405cee210e4638e8b94f49040bb6d9b9
+contract: 0x2359d22b323fcd23856fd91ddf77447403a665fc
+LP Pair: 0x9b3e9c97312167b63212b045e81e7f40ff0c5417To
+swap router(sniper): 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45To
+
+
+From:
+0x662bf721405cee210e4638e8b94f49040bb6d9b9
+To:
+Contract 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45
+
+     TRANSFER  0.‍000236989783330345 Ether From 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 To 0xc778417e063141139fce010982780140aa0cd5ab
+     TRANSFER  0.‍000116124993831869 Ether From 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 To 0x662bf721405cee210e4638e8b94f4
+	 
+	 
+	From 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45To 0x9b3e9c97312167b63212b045e81e7f40ff0c5417 For 0.000236989783330345 Wrapped Ethe... (WETH)
+	From 0x9b3e9c97312167b63212b045e81e7f40ff0c5417To 0x2359d22b323fcd23856fd91ddf77447403a665fc For 590,000.000000002402085386 A536872754D_... (A541)
+	From 0x9b3e9c97312167b63212b045e81e7f40ff0c5417To 0x662bf721405cee210e4638e8b94f49040bb6d9b9 For 11,210,000.000000045639622353 A536872754D_... (A541) 
+	
+	
+Contract TX:
+1. from LP pair to contract -> fees
+2. from LP pair to buyer -> tokens
+
+
+Additional TX:
+1. swap router to LP pair -> paid Eth
+
+
+Transfers:
+1. from Swap router to WETH: paid Eth
+2. from swap router to buyer: extra fees
+
+
+Internal:
+
+LP pair sync
+LP pair swap
