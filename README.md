@@ -1,0 +1,2 @@
+# chungalungacoin
+Chungalunga coin
